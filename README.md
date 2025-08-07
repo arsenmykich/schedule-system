@@ -239,9 +239,6 @@ ScheduleSystem/
 4. **Algorithm Efficiency**: Implemented O(n log n) scheduling algorithm
 5. **Comprehensive Testing**: Created extensive unit tests for reliability
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🤝 Contributing
 
@@ -251,9 +248,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 4. Add tests for new functionality
 5. Ensure all tests pass
 6. Submit a pull request
-
----
-
-**Total Development Time**: ~2-3 hours as requested
-
-**Contact**: For questions or support, please open an issue in the repository.
