@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ScheduleSystem</name>
+    </assembly>
+    <members>
+        <member name="T:ScheduleSystem.Controllers.MeetingsController">
+            <summary>
+            Controller for managing meeting scheduling
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.MeetingsController.ScheduleMeeting(ScheduleSystem.Models.CreateMeetingRequest)">
+            <summary>
+            Schedules a new meeting by finding the earliest available time slot
+            </summary>
+            <param name="request">Meeting scheduling request</param>
+            <returns>Scheduled meeting details or null if no slot available</returns>
+            <response code="201">Meeting scheduled successfully</response>
+            <response code="400">Invalid request data</response>
+            <response code="409">No available time slot found</response>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.MeetingsController.GetAllMeetings">
+            <summary>
+            Gets all scheduled meetings
+            </summary>
+            <returns>List of all meetings</returns>
+            <response code="200">Meetings retrieved successfully</response>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.MeetingsController.GetMeeting(System.Int32)">
+            <summary>
+            Gets a specific meeting by ID
+            </summary>
+            <param name="id">Meeting ID</param>
+            <returns>Meeting details</returns>
+            <response code="200">Meeting found</response>
+            <response code="404">Meeting not found</response>
+        </member>
+        <member name="T:ScheduleSystem.Controllers.UsersController">
+            <summary>
+            Controller for managing users
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.UsersController.CreateUser(ScheduleSystem.Models.CreateUserRequest)">
+            <summary>
+            Creates a new user
+            </summary>
+            <param name="request">User creation request</param>
+            <returns>Created user</returns>
+            <response code="201">User created successfully</response>
+            <response code="400">Invalid request data</response>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.UsersController.GetAllUsers">
+            <summary>
+            Gets all users
+            </summary>
+            <returns>List of all users</returns>
+            <response code="200">Users retrieved successfully</response>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.UsersController.GetUser(System.Int32)">
+            <summary>
+            Gets a specific user by ID
+            </summary>
+            <param name="id">User ID</param>
+            <returns>User details</returns>
+            <response code="200">User found</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:ScheduleSystem.Controllers.UsersController.GetUserMeetings(System.Int32)">
+            <summary>
+            Gets all meetings for a specific user
+            </summary>
+            <param name="userId">User ID</param>
+            <returns>List of meetings for the user</returns>
+            <response code="200">Meetings retrieved successfully</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="T:ScheduleSystem.Data.ScheduleDbContext">
+            <summary>
+            Entity Framework database context for the scheduling system
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Models.CreateMeetingRequest">
+            <summary>
+            Request model for scheduling a new meeting
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Models.CreateUserRequest">
+            <summary>
+            Request model for creating a new user
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Models.Meeting">
+            <summary>
+            Represents a scheduled meeting
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Models.MeetingResponse">
+            <summary>
+            Response model for meeting operations
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Models.User">
+            <summary>
+            Represents a user in the scheduling system
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Services.IMeetingSchedulingService">
+            <summary>
+            Interface for meeting scheduling operations
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Services.TimeSlot">
+            <summary>
+            Represents a time slot for scheduling
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Services.IUserService">
+            <summary>
+            Interface for user management operations
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Services.MeetingSchedulingService">
+            <summary>
+            Service for scheduling meetings with conflict detection algorithm
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.FindEarliestAvailableSlotAsync(System.Collections.Generic.List{System.Int32},System.TimeSpan,System.DateTime,System.DateTime)">
+            <summary>
+            Core algorithm: Finds the earliest available time slot for all participants
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.GetConflictingMeetingsAsync(System.Collections.Generic.List{System.Int32},System.DateTime,System.DateTime)">
+            <summary>
+            Gets all meetings that could conflict with the requested time range for any participant
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.MergeOverlappingSlots(System.Collections.Generic.List{ScheduleSystem.Services.TimeSlot})">
+            <summary>
+            Merges overlapping time slots to reduce complexity
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.FindFirstAvailableSlot(System.Collections.Generic.List{ScheduleSystem.Services.TimeSlot},System.TimeSpan,System.DateTime,System.DateTime)">
+            <summary>
+            Finds the first available time slot that satisfies all constraints
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.EnsureBusinessHours(System.DateTime)">
+            <summary>
+            Ensures a DateTime falls within business hours
+            </summary>
+        </member>
+        <member name="M:ScheduleSystem.Services.MeetingSchedulingService.IsWithinBusinessHours(System.DateTime,System.DateTime)">
+            <summary>
+            Checks if a time slot is entirely within business hours
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Services.UserService">
+            <summary>
+            Service for managing user operations
+            </summary>
+        </member>
+        <member name="T:ScheduleSystem.Tests.MeetingSchedulingServiceTests">
+            <summary>
+            Comprehensive unit tests for the meeting scheduling algorithm
+            </summary>
+        </member>
+    </members>
+</doc>
